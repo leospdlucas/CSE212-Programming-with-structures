@@ -11,13 +11,11 @@ public class PersonQueue
     /// Add a person to the queue
     /// </summary>
     /// <param name="person">The person to add</param>
-    public void Enqueue(Person person)
-    {
-        _queue.Insert(0, person);
+    public void Enqueue(Person person) {
+        _queue.Add(person); //before: _queue.Insert(0, person); insert was adding to the front of the list and now, we want to add to the back of the list
     }
 
-    public Person Dequeue()
-    {
+    public Person Dequeue() {
         var person = _queue[0];
         _queue.RemoveAt(0);
         return person;

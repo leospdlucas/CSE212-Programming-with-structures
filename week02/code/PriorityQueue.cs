@@ -15,23 +15,21 @@
         _queue.Add(newNode);
     }
 
-    public string Dequeue()
-    {
-        if (_queue.Count == 0) // Verify the queue is not empty
-        {
+    public string Dequeue() {
+        if (_queue.Count == 0) { // Verify the queue is not empty
             throw new InvalidOperationException("The queue is empty.");
         }
 
         // Find the index of the item with the highest priority to remove
         var highPriorityIndex = 0;
-        for (int index = 1; index < _queue.Count - 1; index++)
-        {
-            if (_queue[index].Priority >= _queue[highPriorityIndex].Priority)
+        for (int index = 1; index < _queue.Count; index++) { // before: index <= _queue.Count - 1; index++
+            if (_queue[index].Priority > _queue[highPriorityIndex].Priority) // before: >=
                 highPriorityIndex = index;
         }
 
         // Remove and return the item with the highest priority
         var value = _queue[highPriorityIndex].Value;
+        _queue.RemoveAt(highPriorityIndex); // adding RemoveAt to actually remove the item from the list
         return value;
     }
 
