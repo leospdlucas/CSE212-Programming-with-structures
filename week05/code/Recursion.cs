@@ -154,20 +154,18 @@ public static class Recursion {
         // currPath.Add((1,2)); // Use this syntax to add to the current path
 
         // TODO Start Problem 5
+        if (!maze.IsValidMove(currPath, x, y))
+            return;
+
         currPath.Add((x, y));
 
         if (maze.IsEnd(x, y)) {
             results.Add(currPath.AsString());
         }else {
-            if (maze.IsValidMove(currPath, x + 1, y)) 
                 SolveMaze(results, maze, x + 1, y, currPath);
-            if (maze.IsValidMove(currPath, x - 1, y)) 
                 SolveMaze(results, maze, x - 1, y, currPath);
-            if (maze.IsValidMove(currPath, x, y + 1)) 
                 SolveMaze(results, maze, x, y + 1, currPath);
-            if (maze.IsValidMove(currPath, x, y - 1)) 
                 SolveMaze(results, maze, x, y - 1, currPath);
-            currPath.RemoveAt(currPath.Count - 1);
         }
 
         currPath.RemoveAt(currPath.Count - 1);
